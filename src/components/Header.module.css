@@ -1,0 +1,172 @@
+.header {
+  position: sticky;
+  top: 16px;
+  z-index: 20;
+  margin: 16px 24px 0;
+  color: var(--off-white);
+}
+.bar {
+  height: 84px;
+  background: var(--charcoal);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 30px;
+  gap: 24px;
+}
+.links {
+  display: flex;
+  gap: 26px;
+}
+.links button,
+.mobile button {
+  background: none;
+  border: 0;
+  color: var(--off-white);
+  padding: 12px 0;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+.brand {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: 3px;
+  text-align: center;
+  line-height: 1;
+  text-decoration: none;
+}
+.brand span {
+  display: block;
+  font-family: var(--body-font);
+  font-size: 8px;
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+}
+.enquiry {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--gold);
+  color: var(--charcoal);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 14px 20px;
+  min-height: 46px;
+}
+.enquiry:disabled {
+  cursor: not-allowed;
+}
+.toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid #fcfbfb60;
+  border-radius: 50%;
+  color: inherit;
+  align-items: center;
+  justify-content: center;
+}
+.toggle span {
+  position: relative;
+  width: 17px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.2s;
+}
+.toggle span:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 17px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.2s;
+}
+.toggle .cross {
+  transform: rotate(45deg);
+}
+.toggle .cross:after {
+  transform: translateY(-6px) rotate(-90deg);
+}
+.mobile {
+  background: var(--charcoal);
+  border-radius: 14px;
+  margin-top: 8px;
+  padding: 12px 24px 24px;
+}
+.mobile nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.mobile span {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 12px;
+}
+@media (max-width: 1100px) {
+  .links {
+    gap: 16px;
+  }
+  .bar {
+    padding: 0 22px;
+  }
+}
+@media (max-width: 899px) {
+  .header {
+    margin: 12px 16px 0;
+    top: 12px;
+  }
+  .bar {
+    height: 72px;
+    grid-template-columns: 1fr auto;
+    padding: 0 20px;
+    gap: 12px;
+  }
+  .links {
+    display: none;
+  }
+  .brand {
+    justify-self: start;
+    font-size: 28px;
+  }
+  .brand span {
+    font-size: 7px;
+    letter-spacing: 1.5px;
+  }
+  .toggle {
+    display: flex;
+  }
+  .enquiry {
+    padding: 12px 14px;
+    gap: 8px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 380px) {
+  .bar {
+    padding: 0 14px;
+  }
+  .enquiry svg {
+    display: none;
+  }
+  .actions {
+    gap: 8px;
+  }
+}

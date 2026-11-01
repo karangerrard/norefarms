@@ -1,0 +1,356 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 50px 64px 0;
+}
+.introduction {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.eyebrow {
+  margin: 0 0 24px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.6px;
+}
+.eyebrow span {
+  margin-inline: 12px;
+}
+.heading {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: clamp(64px, 7.6vw, 108px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.03;
+}
+.heading > span {
+  font-weight: 400;
+}
+.description {
+  margin: 24px auto 0;
+  max-width: 500px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.mobileBreak {
+  display: none;
+}
+.productStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  max-width: 1120px;
+  min-height: 520px;
+  margin: 12px auto 0;
+}
+.goldDisc {
+  position: absolute;
+  z-index: -1;
+  width: 500px;
+  height: 440px;
+  border-radius: 48% 52% 55% 45%;
+  background: color-mix(in srgb, var(--gold) 19%, var(--off-white));
+  transform: rotate(-16deg);
+}
+.orbit {
+  position: absolute;
+  z-index: -1;
+  width: 550px;
+  height: 460px;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: 50%;
+  transform: rotate(17deg);
+}
+.productEntrance {
+  position: relative;
+  width: 220px;
+  max-width: 100%;
+  mix-blend-mode: multiply;
+}
+.productFloat {
+  transform-origin: 50% 80%;
+  animation: product-drift 7s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.isMoving {
+  animation-play-state: running;
+}
+.productCrop {
+  width: 100%;
+  aspect-ratio: 584 / 1347;
+  overflow: hidden;
+}
+.productImage {
+  /* The source has two bottles: retain only its left half in the crop window. */
+  width: 200%;
+  max-width: none;
+  height: auto;
+}
+.sparkleLeft,
+.sparkleRight {
+  position: absolute;
+  color: var(--gold);
+}
+.sparkleLeft {
+  width: 28px;
+  top: 90px;
+  left: 24%;
+  transform: rotate(15deg);
+}
+.sparkleRight {
+  width: 44px;
+  right: 22%;
+  bottom: 70px;
+  transform: rotate(-12deg);
+}
+.sideNote {
+  position: absolute;
+  left: 0;
+  top: 44%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.noteNumber,
+.noteLabel {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+.noteNumber {
+  margin-bottom: 14px;
+}
+.noteRule {
+  width: 50px;
+  height: 1px;
+  margin-top: 20px;
+  background: var(--gold);
+}
+.productNote {
+  position: absolute;
+  right: 0;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.productName {
+  font-family: var(--heading-font);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+.noteDetail {
+  font-size: 11px;
+}
+.productNote svg {
+  margin-top: 10px;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 52px;
+  padding: 15px 26px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+.primaryButton {
+  background: var(--gold);
+  color: var(--charcoal);
+}
+.primaryButton:disabled {
+  cursor: not-allowed;
+}
+.secondaryButton {
+  border-color: color-mix(in srgb, var(--charcoal) 25%, transparent);
+  background: var(--off-white);
+}
+.primaryButton[href]:hover,
+.secondaryButton:hover {
+  transform: translateY(-2px);
+}
+.secondaryButton:hover {
+  background: color-mix(in srgb, var(--gold) 12%, var(--off-white));
+}
+.productDetails {
+  margin-top: 28px;
+  text-align: center;
+  scroll-margin-top: 130px;
+}
+.productDetails > span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+.productDetails p {
+  margin: 10px 0 32px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.bottomLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 72px;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+.bottomLine > span:nth-child(2) {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.bottomLine i {
+  margin-inline: 10px;
+  font-style: normal;
+}
+.motionToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 0 8px 12px;
+  border: 0;
+  background: none;
+  font-size: 11px;
+  cursor: pointer;
+}
+@keyframes product-drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(0.5deg);
+  }
+}
+@media (max-width: 1050px) {
+  .hero {
+    padding-inline: 36px;
+  }
+  .sideNote,
+  .productNote {
+    max-width: 155px;
+  }
+  .noteDetail {
+    max-width: 130px;
+    line-height: 1.6;
+  }
+  .productEntrance {
+    width: 195px;
+  }
+  .productStage {
+    min-height: 465px;
+  }
+}
+@media (max-width: 767px) {
+  .hero {
+    padding: 44px 24px 0;
+  }
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    margin-bottom: 24px;
+  }
+  .eyebrow span {
+    margin-inline: 8px;
+  }
+  .heading {
+    font-size: clamp(44px, 10.4vw, 74px);
+    line-height: 1.08;
+  }
+  .description {
+    font-size: 13px;
+    margin-top: 20px;
+  }
+  .mobileBreak {
+    display: block;
+  }
+  .productStage {
+    min-height: 375px;
+    margin-top: 24px;
+  }
+  .productEntrance {
+    width: 165px;
+  }
+  .goldDisc {
+    width: 310px;
+    height: 290px;
+  }
+  .orbit {
+    width: 340px;
+    height: 310px;
+  }
+  .sideNote,
+  .productNote {
+    display: none;
+  }
+  .sparkleLeft {
+    left: 0;
+    top: 35px;
+    width: 22px;
+  }
+  .sparkleRight {
+    right: 0;
+    bottom: 25px;
+    width: 30px;
+  }
+  .actions {
+    margin-top: 24px;
+    gap: 10px;
+  }
+  .primaryButton,
+  .secondaryButton {
+    gap: 12px;
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .productDetails p {
+    max-width: 260px;
+    margin: 10px auto 28px;
+    font-size: 11px;
+  }
+  .bottomLine > span:first-child {
+    display: none;
+  }
+  .bottomLine > span:nth-child(2) {
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .productFloat {
+    animation: none;
+  }
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+  .primaryButton[href]:hover,
+  .secondaryButton:hover {
+    transform: none;
+  }
+}
