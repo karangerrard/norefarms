@@ -61,7 +61,7 @@ export function Hero() {
             <div className={styles.productCrop}>
               <img
                 className={styles.productImage}
-                src="/images/nore-milk-original.jpeg"
+                src={`${import.meta.env.BASE_URL}images/nore-milk-original.jpeg`}
                 alt="Nore Farms cow milk bottle with a white cap and gold-accented label"
                 width="1168"
                 height="1347"
