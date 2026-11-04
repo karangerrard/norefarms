@@ -1,24 +1,42 @@
 import { whatsappUrl } from '../lib/whatsapp';
 import { Arrow } from './Arrow';
+
+interface EnquiryLinkProps {
+  product?: string;
+  className?: string;
+  label?: string;
+}
+
 export function EnquiryLink({
   product,
   className = '',
-}: {
-  product?: string;
-  className?: string;
-}) {
+  label = 'WhatsApp us',
+}: EnquiryLinkProps) {
   const href = whatsappUrl(product);
-  return href ? (
-    <a className={className} href={href} target="_blank" rel="noopener noreferrer">
-      WhatsApp us <Arrow />
-    </a>
-  ) : (
-    <button
+
+  if (!href) {
+    return (
+      <button
+        type="button"
+        className={className}
+        disabled
+        title="WhatsApp enquiries will be available when we launch"
+      >
+        {label}
+        <Arrow />
+      </button>
+    );
+  }
+
+  return (
+    <a
       className={className}
-      disabled
-      title="Add the confirmed WhatsApp number in .env.local to enable enquiries"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      WhatsApp us <Arrow />
-    </button>
+      {label}
+      <Arrow />
+    </a>
   );
 }

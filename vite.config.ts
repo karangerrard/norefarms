@@ -10,5 +10,13 @@ export default defineConfig({
   },
   build: {
     outDir: 'docs',
+    rollupOptions: {
+      input: {
+        home: 'index.html',
+        milk: 'products/cow-milk/index.html',
+        paneer: 'products/paneer/index.html',
+        ghee: 'products/ghee/index.html',
+      },
+    },
   },
 });
