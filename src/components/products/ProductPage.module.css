@@ -1,0 +1,400 @@
+.page {
+  max-width: 1408px;
+  padding: 36px 64px 80px;
+  margin: auto;
+}
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.breadcrumb a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.productHero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.gallery {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 600px;
+  background: color-mix(in srgb, var(--gold) 9%, var(--off-white));
+  border-radius: 24px;
+  overflow: hidden;
+}
+.galleryBrand {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+}
+.halo {
+  position: absolute;
+  z-index: -1;
+  width: 340px;
+  height: 340px;
+  background: color-mix(in srgb, var(--gold) 17%, var(--off-white));
+  border-radius: 50%;
+}
+.milkCrop {
+  width: 205px;
+  aspect-ratio: 584 / 1347;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+.milkCrop img {
+  width: 200%;
+  max-width: none;
+  height: auto;
+}
+.packImage {
+  width: 320px;
+  height: 420px;
+  object-fit: contain;
+}
+.galleryCaption {
+  position: absolute;
+  bottom: 22px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.eyebrow {
+  margin: 0 0 24px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  line-height: 1.7;
+}
+.summary h1 {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: clamp(44px, 5vw, 70px);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  margin: 0;
+}
+.summary h1 span {
+  display: block;
+  margin-top: 20px;
+  font-size: 24px;
+  letter-spacing: -0.7px;
+  line-height: 1.4;
+}
+.introduction {
+  margin: 24px 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.quickFacts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-block: 1px solid #d5b05870;
+  margin: 28px 0;
+}
+.quickFacts dt {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.quickFacts dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.enquiry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 54px;
+  width: 100%;
+  border: 0;
+  border-radius: 9px;
+  padding: 16px 24px;
+  background: var(--gold);
+  color: var(--charcoal);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.enquiry:disabled {
+  cursor: not-allowed;
+}
+.enquiryNote {
+  font-size: 11px;
+  line-height: 1.6;
+}
+.allergen {
+  margin-top: 24px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.pending {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.backLink,
+.labelLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 44px;
+  font-size: 12px;
+  text-underline-offset: 6px;
+}
+.sectionNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 36px;
+  margin-top: 64px;
+  border-bottom: 1px solid #d5b05870;
+}
+.sectionNav a {
+  padding: 18px 0;
+  font-size: 13px;
+  text-decoration: none;
+}
+.sectionNav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+.page section[id] {
+  scroll-margin-top: 130px;
+}
+.page h2 {
+  font-family: var(--heading-font);
+  font-size: clamp(30px, 3.2vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+  margin: 0 0 28px;
+}
+.story,
+.nutrition {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  padding: 72px 0;
+  border-bottom: 1px solid #d5b05870;
+}
+.story p,
+.nutrition p,
+.care p {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-top: 0;
+}
+.ingredients {
+  margin-top: 28px;
+}
+.page h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.tableWrap {
+  min-width: 0;
+}
+.tableWrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tableWrap caption {
+  font-size: 11px;
+  text-align: left;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.tableWrap th,
+.tableWrap td {
+  padding: 13px 12px;
+  text-align: right;
+  border-bottom: 1px solid #3b3a3725;
+  font-variant-numeric: tabular-nums;
+}
+.tableWrap thead {
+  background: var(--charcoal);
+  color: var(--off-white);
+}
+.tableWrap thead span {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 400;
+}
+.tableWrap th:first-child {
+  text-align: left;
+}
+.tableWrap tbody th {
+  font-weight: 400;
+}
+.tableWrap .tableNote {
+  font-size: 11px;
+  margin-top: 20px;
+}
+.pendingPanel {
+  padding: 28px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--gold) 12%, var(--off-white));
+}
+.care {
+  padding: 72px 0;
+}
+.care details {
+  border-bottom: 1px solid #d5b05870;
+}
+.care summary {
+  padding: 24px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 64px;
+}
+.care p {
+  max-width: 800px;
+  padding-bottom: 12px;
+}
+.related {
+  padding: 40px;
+  background: color-mix(in srgb, var(--gold) 12%, var(--off-white));
+  border-radius: 20px;
+}
+.related > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.related a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-top: 1px solid #d5b05890;
+  text-decoration: none;
+  font-size: 20px;
+}
+.related a:hover span {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+@media (max-width: 1100px) {
+  .page {
+    padding-inline: 36px;
+  }
+  .productHero,
+  .story,
+  .nutrition {
+    gap: 40px;
+  }
+  .gallery {
+    min-height: 530px;
+  }
+  .milkCrop {
+    width: 180px;
+  }
+}
+@media (max-width: 767px) {
+  .page {
+    padding: 20px 24px 48px;
+  }
+  .breadcrumb {
+    gap: 8px;
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+  .productHero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .gallery {
+    min-height: 425px;
+    border-radius: 18px;
+  }
+  .galleryBrand {
+    top: 16px;
+    left: 16px;
+  }
+  .milkCrop {
+    width: 150px;
+    margin-top: 25px;
+  }
+  .halo {
+    width: 250px;
+    height: 250px;
+  }
+  .packImage {
+    width: 220px;
+    height: 300px;
+    margin-top: 30px;
+  }
+  .eyebrow {
+    margin-bottom: 16px;
+  }
+  .summary h1 {
+    font-size: 46px;
+  }
+  .summary h1 span {
+    font-size: 22px;
+  }
+  .introduction {
+    font-size: 15px;
+  }
+  .quickFacts {
+    gap: 18px;
+  }
+  .quickFacts dd {
+    font-size: 13px;
+  }
+  .sectionNav {
+    margin-top: 36px;
+    gap: 10px 20px;
+  }
+  .sectionNav a {
+    font-size: 11px;
+  }
+  .story,
+  .nutrition {
+    grid-template-columns: 1fr;
+    padding: 48px 0;
+    gap: 16px;
+  }
+  .tableWrap table {
+    font-size: 12px;
+  }
+  .tableWrap th,
+  .tableWrap td {
+    padding: 12px 7px;
+  }
+  .tableWrap thead th {
+    font-size: 11px;
+  }
+  .care {
+    padding: 48px 0;
+  }
+  .related {
+    padding: 28px 24px;
+  }
+  .related > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

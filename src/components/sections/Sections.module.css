@@ -1,0 +1,468 @@
+.section {
+  max-width: 1408px;
+  margin: 0 auto;
+  padding: 100px 64px;
+  scroll-margin-top: 125px;
+}
+.section:focus {
+  outline: none;
+}
+.eyebrow {
+  margin: 0 0 24px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+.sectionIntro {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+.sectionHeading {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: clamp(36px, 4.5vw, 62px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.13;
+}
+.introCopy {
+  max-width: 340px;
+  justify-self: end;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.cardReveal {
+  display: flex;
+  min-width: 0;
+}
+.productCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--gold) 12%, var(--off-white));
+  transition: transform 200ms ease;
+}
+.productCard:hover {
+  transform: translateY(-4px);
+}
+.imageStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 310px;
+  padding: 32px 24px;
+  background: color-mix(in srgb, var(--gold) 20%, var(--off-white));
+  text-decoration: none;
+}
+.cardReveal:nth-child(2) .imageStage {
+  background: color-mix(in srgb, var(--gold) 9%, var(--off-white));
+}
+.productIndex {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.milkCrop {
+  width: 115px;
+  aspect-ratio: 584 / 1347;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+.milkCrop img {
+  width: 200%;
+  max-width: none;
+  height: auto;
+}
+.packImage {
+  width: 190px;
+  height: 245px;
+  object-fit: contain;
+}
+.imageLabel {
+  position: absolute;
+  bottom: 12px;
+  font-size: 9px;
+}
+.cardCopy {
+  padding: 28px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.cardCopy h3 {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+}
+.cardCopy h3 a {
+  text-decoration: none;
+}
+.cardCopy h3 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.cardEnquiry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  text-decoration: none;
+}
+.cardEnquiry:disabled {
+  cursor: not-allowed;
+}
+.cardCopy p {
+  margin: 16px 0 28px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.goldButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 50px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--gold);
+  color: var(--charcoal);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 180ms ease;
+}
+.goldButton[href]:hover {
+  transform: translateY(-2px);
+}
+.goldButton:disabled {
+  cursor: not-allowed;
+}
+.cardCopy .goldButton {
+  width: 100%;
+  margin-top: auto;
+  gap: 12px;
+}
+.sectionNote {
+  margin: 26px 0 0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.about {
+  border-top: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+}
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.aboutCopy {
+  min-width: 0;
+}
+.valuesHeading {
+  margin: 0 0 32px;
+  font-family: var(--heading-font);
+  font-size: clamp(40px, 5.1vw, 73px);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 1.02;
+}
+.story {
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 0 0 16px;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 48px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 8px;
+}
+.aboutFigure {
+  margin: 0;
+  padding-top: 6px;
+}
+.aboutFigure img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 28px;
+}
+.aboutFigure figcaption {
+  margin-top: 12px;
+  font-size: 10px;
+}
+.contact {
+  margin: 0 24px;
+  max-width: none;
+  padding: 80px 40px;
+  color: var(--off-white);
+  background: var(--charcoal);
+  border-radius: 24px;
+}
+.contactGrid {
+  max-width: 1280px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 96px;
+  align-items: center;
+}
+.contactHeading {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+.contactCopy {
+  max-width: 440px;
+  font-size: 16px;
+  line-height: 1.75;
+  margin: 28px 0;
+}
+.launchNote {
+  max-width: 320px;
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.contactDetails {
+  margin: 0;
+}
+.contactDetails > div {
+  padding: 20px 0;
+  border-bottom: 1px solid #fcfbfb30;
+}
+.contactDetails dt {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.contactDetails dd {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.contactDetails a {
+  text-underline-offset: 5px;
+}
+.contactCard {
+  padding: 36px;
+  border: 1px solid #d5b05880;
+  border-radius: 20px;
+}
+.contactMark {
+  font-family: var(--heading-font);
+  font-size: 110px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--gold);
+}
+.contactCard p {
+  margin: 32px 0;
+  font-family: var(--heading-font);
+  font-size: 26px;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+}
+.contactCard > span:last-child {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.footer {
+  padding: 48px 64px 32px;
+  margin-top: 24px;
+  background: var(--charcoal);
+  color: var(--off-white);
+}
+.footerInner {
+  max-width: 1280px;
+  margin: auto;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  padding-top: 28px;
+}
+.footerBrand {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  text-align: center;
+}
+.footerBrand span {
+  display: block;
+  margin-top: 3px;
+  font-size: 8px;
+  letter-spacing: 4px;
+}
+.footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+}
+.footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  text-decoration: none;
+}
+.footer nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.footer p {
+  font-size: 10px;
+}
+@media (max-width: 1100px) {
+  .section {
+    padding: 80px 36px;
+  }
+  .sectionIntro {
+    gap: 40px;
+  }
+  .productGrid {
+    gap: 16px;
+  }
+  .cardCopy {
+    padding: 24px 20px;
+  }
+  .cardCopy .goldButton {
+    padding: 14px 10px;
+    font-size: 11px;
+  }
+  .aboutGrid {
+    gap: 36px;
+  }
+  .valuesHeading {
+    font-size: clamp(36px, 5.1vw, 60px);
+  }
+  .aboutFigure img {
+    height: 480px;
+  }
+  .contact {
+    padding: 64px 36px;
+  }
+  .contactGrid {
+    gap: 48px;
+  }
+}
+@media (max-width: 767px) {
+  .section {
+    padding: 64px 24px;
+    scroll-margin-top: 105px;
+  }
+  .eyebrow {
+    font-size: 9px;
+    margin-bottom: 20px;
+  }
+  .sectionIntro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .introCopy {
+    justify-self: start;
+    font-size: 15px;
+  }
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .imageStage {
+    min-height: 320px;
+  }
+  .cardCopy {
+    padding: 28px;
+  }
+  .cardCopy .goldButton {
+    font-size: 13px;
+  }
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .valuesHeading {
+    font-size: clamp(35px, 8.6vw, 62px);
+  }
+  .story {
+    font-size: 16px;
+  }
+  .aboutFigure img {
+    height: auto;
+    aspect-ratio: 1.15;
+    border-radius: 20px;
+  }
+  .contact {
+    margin: 0 16px;
+    padding: 48px 24px;
+    border-radius: 20px;
+  }
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .contactCopy {
+    font-size: 15px;
+  }
+  .contactCard {
+    display: none;
+  }
+  .footer {
+    padding: 36px 24px 24px;
+  }
+  .footerInner {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer nav {
+    justify-content: center;
+    gap: 12px 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .productCard,
+  .goldButton {
+    transition: none;
+  }
+  .productCard:hover,
+  .goldButton[href]:hover {
+    transform: none;
+  }
+}

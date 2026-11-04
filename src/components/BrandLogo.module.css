@@ -1,0 +1,21 @@
+.logo {
+  display: block;
+  width: 132px;
+  height: auto;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  object-fit: contain;
+}
+.compact {
+  width: 122px;
+}
+@media (max-width: 899px) {
+  .logo {
+    width: 116px;
+    padding: 5px 9px;
+  }
+  .compact {
+    width: 110px;
+  }
+}
