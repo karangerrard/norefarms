@@ -19,16 +19,24 @@
   display: flex;
   gap: 26px;
 }
-.links button,
-.mobile button {
+.links a,
+.mobile a {
   background: none;
   border: 0;
   color: var(--off-white);
   padding: 12px 0;
   font-size: 13px;
   font-weight: 500;
-  cursor: not-allowed;
-  opacity: 0.75;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-underline-offset: 6px;
+}
+.links a:hover,
+.mobile a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
 }
 .brand {
   font-family: var(--heading-font);

@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { EnquiryLink } from './EnquiryLink';
 import styles from './Header.module.css';
-const links = ['Products', 'Our story', 'Contact'];
+import { BrandLogo } from './BrandLogo';
+import { homeUrl, sectionUrl } from '../lib/navigation';
+const links = [
+  { label: 'Products', href: '#products' },
+  { label: 'About us', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
 export function Header() {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
@@ -29,21 +35,30 @@ export function Header() {
       media.removeEventListener('change', resize);
     };
   }, [open]);
-  const pendingLinks = links.map((label) => (
-    <button
-      key={label}
-      disabled
-      title="This section will be added in the next build stage"
+  const sectionLinks = links.map(({ label, href }) => (
+    <a
+      key={href}
+      href={sectionUrl(href.slice(1))}
+      onClick={(event) => {
+        setOpen(false);
+        const section = document.querySelector<HTMLElement>(href);
+        if (section) {
+          event.preventDefault();
+          section.focus({ preventScroll: true });
+          section.scrollIntoView();
+          window.history.replaceState(null, '', href);
+        }
+      }}
     >
       {label}
-    </button>
+    </a>
   ));
   return (
     <header ref={header} className={styles.header}>
       <nav className={styles.bar} aria-label="Main navigation">
-        <div className={styles.links}>{pendingLinks}</div>
-        <a href="#main" className={styles.brand} aria-label="Nore Farms home">
-          NORE<span>F A R M S</span>
+        <div className={styles.links}>{sectionLinks}</div>
+        <a href={homeUrl} className={styles.brand} aria-label="Nore Farms home">
+          <BrandLogo />
         </a>
         <div className={styles.actions}>
           <EnquiryLink className={styles.enquiry} />
@@ -60,10 +75,7 @@ export function Header() {
         </div>
       </nav>
       <div id="mobile-navigation" className={styles.mobile} hidden={!open}>
-        <nav aria-label="Mobile navigation">
-          {pendingLinks}
-          <span>More of Nore Farms, coming soon.</span>
-        </nav>
+        <nav aria-label="Mobile navigation">{sectionLinks}</nav>
       </div>
     </header>
   );
