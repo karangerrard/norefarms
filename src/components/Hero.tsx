@@ -18,7 +18,7 @@ function Sparkle({ className }: { className: string }) {
 
 export function Hero() {
   const reducedMotion = useReducedMotion();
-  const [motionPaused, setMotionPaused] = useState(false);
+  const [motionPaused] = useState(false);
   const hasMotion = !reducedMotion && !motionPaused;
 
   return (
