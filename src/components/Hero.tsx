@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { Arrow } from './Arrow';
 import { EnquiryLink } from './EnquiryLink';
 import styles from './Hero.module.css';
+import { productUrl } from '../lib/navigation';
 
 function Sparkle({ className }: { className: string }) {
   return (
@@ -17,7 +18,7 @@ function Sparkle({ className }: { className: string }) {
 
 export function Hero() {
   const reducedMotion = useReducedMotion();
-  const [motionPaused] = useState(false);
+  const [motionPaused, setMotionPaused] = useState(false);
   const hasMotion = !reducedMotion && !motionPaused;
 
   return (
@@ -82,7 +83,7 @@ export function Hero() {
 
       <div className={styles.actions}>
         <EnquiryLink product="cow milk" className={styles.primaryButton} />
-        <a className={styles.secondaryButton} href="#milk-details">
+        <a className={styles.secondaryButton} href={productUrl('cow-milk')}>
           Meet our milk <Arrow direction="right" />
         </a>
       </div>
