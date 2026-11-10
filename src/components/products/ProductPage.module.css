@@ -53,7 +53,8 @@
   width: 205px;
   aspect-ratio: 584 / 1347;
   overflow: hidden;
-  mix-blend-mode: multiply;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
 }
 .milkCrop img {
   width: 200%;

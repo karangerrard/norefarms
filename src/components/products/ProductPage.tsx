@@ -35,7 +35,12 @@ export function ProductPage({ product }: { product: Product }) {
           </div>
           <div className={styles.halo} aria-hidden="true" />
           {isMilk ? (
-            <div className={styles.milkCrop}>
+            <div
+              className={styles.milkCrop}
+              style={{
+                maskImage: `url("${import.meta.env.BASE_URL}brand/milk-silhouette.svg")`,
+              }}
+            >
               <img
                 src={`${import.meta.env.BASE_URL}images/${product.image}`}
                 alt={product.imageAlt}

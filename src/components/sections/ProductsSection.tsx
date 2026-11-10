@@ -42,7 +42,12 @@ export function ProductsSection() {
                   0{index + 1}
                 </span>
                 {product.isMilk ? (
-                  <div className={styles.milkCrop}>
+                  <div
+                    className={styles.milkCrop}
+                    style={{
+                      maskImage: `url("${import.meta.env.BASE_URL}brand/milk-silhouette.svg")`,
+                    }}
+                  >
                     <img
                       src={`${import.meta.env.BASE_URL}images/${product.image}`}
                       alt={product.imageAlt}
