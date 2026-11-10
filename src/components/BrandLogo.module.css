@@ -10,6 +10,15 @@
 .compact {
   width: 122px;
 }
+.inverse {
+  width: 112px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  /* Screen blending drops the dark field left by inverting the label artwork. */
+  filter: grayscale(1) invert(1) contrast(1.25);
+  mix-blend-mode: screen;
+}
 @media (max-width: 899px) {
   .logo {
     width: 116px;
@@ -17,5 +26,14 @@
   }
   .compact {
     width: 110px;
+  }
+  .inverse {
+    width: 88px;
+    padding: 0;
+  }
+}
+@media (max-width: 350px) {
+  .inverse {
+    width: 76px;
   }
 }
