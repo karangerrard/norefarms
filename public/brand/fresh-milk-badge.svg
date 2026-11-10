@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <title>Fresh milk, single source</title>
+  <defs>
+    <path id="top" d="M27 104a73 73 0 0 1 146 0" />
+    <path id="bottom" d="M26 101a74 74 0 0 0 148 0" />
+    <path id="star" d="M0-5 1.5-1.6 5-1.4 2.3.9 3 4.5 0 2.7-3 4.5-2.3.9-5-1.4-1.5-1.6Z" />
+  </defs>
+  <circle cx="100" cy="100" r="95" fill="#fcfbfb" stroke="#3b3a37" stroke-width="4" />
+  <circle cx="100" cy="100" r="88" stroke="#d5b058" stroke-width="1.5" />
+  <circle cx="100" cy="100" r="55" stroke="#d5b058" stroke-width="2.2" />
+  <circle cx="100" cy="100" r="49" stroke="#d5b058" stroke-width="2" stroke-dasharray="1 5.4" stroke-linecap="round" />
+  <g fill="#3b3a37" font-family="Arial, sans-serif" font-weight="700" letter-spacing="1.6" text-anchor="middle">
+    <text font-size="17"><textPath href="#top" startOffset="50%">FRESH MILK</textPath></text>
+    <text font-size="14"><textPath href="#bottom" startOffset="50%">SINGLE SOURCE</textPath></text>
+  </g>
+  <g fill="#d5b058">
+    <use href="#star" x="27" y="92" />
+    <use href="#star" x="25" y="106" />
+    <use href="#star" x="29" y="120" />
+    <use href="#star" x="173" y="92" />
+    <use href="#star" x="175" y="106" />
+    <use href="#star" x="171" y="120" />
+  </g>
+  <g stroke="#3b3a37" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M73 72h29v11l9 11v39H66V94l7-11Zm0 11h29M66 94h33l3-11M99 94v39" />
+    <path d="M114 94v-6h15v6c0 7 7 11 7 18v15c0 5-4 8-9 8h-11c-5 0-9-3-9-8v-15c0-7 7-11 7-18Z" fill="#fcfbfb" />
+    <path d="M114 94h15m-22 17h29m-29 12h29" />
+    <path d="M74 107h16m-16 7h16" stroke="#d5b058" />
+  </g>
+</svg>

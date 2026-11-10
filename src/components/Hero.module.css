@@ -1,10 +1,25 @@
 .hero {
   position: relative;
   isolation: isolate;
+  margin: 0 auto;
+}
+.viewport {
+  display: grid;
   overflow: hidden;
-  max-width: 1600px;
-  margin-inline: auto;
-  padding: 50px 64px 0;
+  touch-action: pan-y pinch-zoom;
+}
+.slide {
+  grid-area: 1 / 1;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  isolation: isolate;
+  background: var(--off-white);
+}
+.slideInner {
+  max-width: 1440px;
+  padding: 36px 64px 24px;
+  margin: 0 auto;
 }
 .introduction {
   position: relative;
@@ -12,298 +27,469 @@
   text-align: center;
 }
 .eyebrow {
-  margin: 0 0 24px;
-  font-size: 10px;
+  margin: 0 0 20px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 2.6px;
+  letter-spacing: 2.2px;
 }
 .eyebrow span {
-  margin-inline: 12px;
+  margin-inline: 10px;
 }
 .heading {
   margin: 0;
   font-family: var(--heading-font);
-  font-size: clamp(64px, 7.6vw, 108px);
-  font-weight: 500;
-  letter-spacing: -0.065em;
-  line-height: 1.03;
+  font-size: clamp(56px, 6.4vw, 92px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
 }
 .heading > span {
-  font-weight: 400;
+  font-weight: 600;
 }
 .description {
-  margin: 24px auto 0;
-  max-width: 500px;
-  font-size: 15px;
-  line-height: 1.7;
+  max-width: 590px;
+  min-height: 3.2em;
+  margin: 16px auto 0;
+  font-size: 17px;
+  line-height: 1.6;
 }
-.mobileBreak {
-  display: none;
+.cowWatermark {
+  position: absolute;
+  z-index: 0;
+  width: min(770px, 96vw);
+  height: 550px;
+  object-fit: contain;
+  opacity: 0.1;
+  transform: scale(1.15);
+  mask-image: linear-gradient(black 84%, transparent 100%);
+  pointer-events: none;
 }
 .productStage {
   position: relative;
-  display: grid;
-  place-items: center;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 1120px;
-  min-height: 520px;
-  margin: 12px auto 0;
+  height: 466px;
+  margin: 10px auto 0;
 }
-.goldDisc {
+.backdrop {
   position: absolute;
-  z-index: -1;
-  width: 500px;
-  height: 440px;
+  z-index: 1;
+  width: 466px;
+  height: 396px;
   border-radius: 48% 52% 55% 45%;
-  background: color-mix(in srgb, var(--gold) 19%, var(--off-white));
-  transform: rotate(-16deg);
+  background: color-mix(in srgb, var(--gold) 19%, transparent);
+  transform: rotate(-14deg);
+  pointer-events: none;
+}
+.paneer .backdrop {
+  border-radius: 42% 58% 45% 55%;
+  transform: rotate(12deg);
+}
+.ghee .backdrop {
+  border-radius: 50%;
 }
 .orbit {
   position: absolute;
-  z-index: -1;
-  width: 550px;
-  height: 460px;
-  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  z-index: 1;
+  width: 522px;
+  height: 431px;
+  border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
   border-radius: 50%;
-  transform: rotate(17deg);
+  transform: rotate(18deg);
+  pointer-events: none;
 }
-.productEntrance {
+.productImageLayer {
   position: relative;
-  width: 220px;
+  z-index: 4;
+  width: 420px;
   max-width: 100%;
-  mix-blend-mode: multiply;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
 }
-.productFloat {
-  transform-origin: 50% 80%;
-  animation: product-drift 7s ease-in-out infinite;
-  animation-play-state: paused;
-}
-.isMoving {
-  animation-play-state: running;
-}
-.productCrop {
-  width: 100%;
+.milkCrop {
+  position: relative;
+  left: -12px;
+  width: 230px;
   aspect-ratio: 584 / 1347;
   overflow: hidden;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
 }
-.productImage {
-  /* The source has two bottles: retain only its left half in the crop window. */
+.milkCrop img {
   width: 200%;
   max-width: none;
   height: auto;
 }
+.packImage {
+  width: 360px;
+  height: 404px;
+  object-fit: contain;
+}
+.ghee .packImage {
+  width: 372px;
+  height: 386px;
+}
+/* Products are opaque foreground images. No blend modes, colour filters or tinted overlays. */
+.productImageLayer img {
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: none;
+}
+.heroBadge {
+  position: absolute;
+  z-index: 3;
+  height: auto;
+  right: 23%;
+  bottom: 10px;
+  pointer-events: none;
+}
+.naturalBadge {
+  width: 132px;
+}
+.milkBadge {
+  width: 152px;
+}
+.seal {
+  position: absolute;
+  z-index: 2;
+  width: 114px;
+  height: 114px;
+  top: 45px;
+  left: 26%;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
 .sparkleLeft,
 .sparkleRight {
   position: absolute;
+  z-index: 2;
   color: var(--gold);
+  pointer-events: none;
 }
 .sparkleLeft {
-  width: 28px;
-  top: 90px;
-  left: 24%;
-  transform: rotate(15deg);
+  width: 18px;
+  left: 30%;
+  top: auto;
+  bottom: 50px;
+  transform: rotate(12deg);
 }
 .sparkleRight {
-  width: 44px;
-  right: 22%;
-  bottom: 70px;
+  width: 26px;
+  right: 29%;
+  bottom: auto;
+  top: 35px;
   transform: rotate(-12deg);
 }
 .sideNote {
   position: absolute;
+  z-index: 2;
+  top: 26%;
   left: 0;
-  top: 44%;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  font-size: 12px;
-  line-height: 1.5;
+  width: 180px;
 }
-.noteNumber,
 .noteLabel {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 1.6px;
+  letter-spacing: 1.4px;
 }
-.noteNumber {
-  margin-bottom: 14px;
+.sideNote p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 16px 0;
+  max-width: 170px;
 }
 .noteRule {
-  width: 50px;
+  display: block;
+  width: 48px;
   height: 1px;
   margin-top: 20px;
+  margin-bottom: 22px;
   background: var(--gold);
 }
 .productNote {
   position: absolute;
+  z-index: 2;
+  top: 28%;
   right: 0;
-  top: 40%;
+  width: 180px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
+  border-top: 1px solid var(--gold);
+  padding-top: 22px;
+}
+.highlightValue {
+  font-family: var(--heading-font);
+  font-size: 25px;
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+}
+.highlightLabel {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.pairingLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+.pairings {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
 }
 .productName {
   font-family: var(--heading-font);
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 500;
-  letter-spacing: -1px;
+  letter-spacing: -0.8px;
 }
-.noteDetail {
-  font-size: 11px;
+.packagingNote {
+  font-size: 12px;
 }
-.productNote svg {
-  margin-top: 10px;
+.productTags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.productTags li {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.productTags li::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background: var(--charcoal);
+  border-radius: 50%;
+}
+.mobilePackNote {
+  display: none;
 }
 .actions {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 .primaryButton,
 .secondaryButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 22px;
   min-height: 52px;
-  padding: 15px 26px;
+  padding: 15px 24px;
   border: 1px solid transparent;
-  border-radius: 10px;
-  font-size: 13px;
+  border-radius: 9px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  transition:
-    transform 180ms ease,
-    background 180ms ease;
+  transition: transform 180ms ease;
 }
 .primaryButton {
   background: var(--gold);
   color: var(--charcoal);
 }
-.primaryButton:disabled {
+.secondaryButton {
+  background: var(--off-white);
+  border-color: #3b3a3740;
+  color: var(--charcoal);
+}
+.secondaryButton:disabled {
   cursor: not-allowed;
 }
-.secondaryButton {
-  border-color: color-mix(in srgb, var(--charcoal) 25%, transparent);
-  background: var(--off-white);
-}
-.primaryButton[href]:hover,
-.secondaryButton:hover {
+.primaryButton:hover,
+.secondaryButton[href]:hover {
   transform: translateY(-2px);
 }
-.secondaryButton:hover {
-  background: color-mix(in srgb, var(--gold) 12%, var(--off-white));
-}
-.productDetails {
-  margin-top: 28px;
-  text-align: center;
-  scroll-margin-top: 130px;
-}
-.productDetails > span {
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-}
-.productDetails p {
-  margin: 10px 0 32px;
-  font-size: 12px;
-  line-height: 1.6;
-}
-.bottomLine {
+.navigation {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1312px;
+  min-height: 72px;
+  margin: 0 auto;
+  padding: 14px 0;
+  border-bottom: 1px solid #d5b05845;
+}
+.progressIndicator {
+  position: absolute;
+  z-index: 6;
+  top: 17px;
+  right: max(24px, calc((100% - 1312px) / 2));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.readingProgress {
+  height: 4px;
+  width: clamp(96px, 11vw, 158px);
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--gold) 25%, var(--off-white));
+  overflow: hidden;
+}
+.readingProgress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left center;
+}
+.controls {
+  display: flex;
   align-items: center;
   gap: 16px;
-  min-height: 72px;
-  border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
-  font-size: 9px;
-  letter-spacing: 1.5px;
 }
-.bottomLine > span:nth-child(2) {
-  font-size: 12px;
-  letter-spacing: 0;
-}
-.bottomLine i {
-  margin-inline: 10px;
-  font-style: normal;
-}
-.motionToggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 8px 0 8px 12px;
-  border: 0;
+.arrowButton {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   background: none;
-  font-size: 11px;
+  border: 1px solid #3b3a3740;
+  border-radius: 50%;
   cursor: pointer;
 }
-@keyframes product-drift {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-0.5deg);
-  }
-  50% {
-    transform: translateY(-9px) rotate(0.5deg);
+.arrowButton:hover {
+  background: color-mix(in srgb, var(--gold) 15%, var(--off-white));
+}
+.selectors {
+  display: flex;
+  gap: 8px;
+}
+.selectors button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+.dot {
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--charcoal);
+  border-radius: 50%;
+}
+.selectors [aria-pressed='true'] {
+  font-weight: 700;
+}
+.selectors [aria-pressed='true'] .dot {
+  background: var(--charcoal);
+}
+@media (max-width: 1440px) {
+  .navigation {
+    margin-inline: 64px;
   }
 }
 @media (max-width: 1050px) {
-  .hero {
+  .slideInner {
     padding-inline: 36px;
+  }
+  .navigation {
+    margin-inline: 36px;
   }
   .sideNote,
   .productNote {
-    max-width: 155px;
+    width: 140px;
   }
-  .noteDetail {
-    max-width: 130px;
-    line-height: 1.6;
+  .backdrop {
+    width: 414px;
+    height: 362px;
   }
-  .productEntrance {
-    width: 195px;
+  .orbit {
+    width: 470px;
+    height: 400px;
   }
-  .productStage {
-    min-height: 465px;
+  .seal {
+    left: 21%;
+    width: 97px;
+    height: 97px;
+  }
+  .heroBadge {
+    right: 17%;
+  }
+  .naturalBadge {
+    width: 118px;
+  }
+  .milkBadge {
+    width: 136px;
   }
 }
 @media (max-width: 767px) {
-  .hero {
-    padding: 44px 24px 0;
+  .slideInner {
+    padding: 45px 20px 20px;
   }
   .eyebrow {
-    font-size: 8px;
-    letter-spacing: 1.8px;
-    margin-bottom: 24px;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    margin-bottom: 20px;
   }
   .eyebrow span {
-    margin-inline: 8px;
+    margin-inline: 6px;
   }
   .heading {
-    font-size: clamp(44px, 10.4vw, 74px);
-    line-height: 1.08;
+    font-size: clamp(37px, 9.1vw, 68px);
+    line-height: 1.09;
+    letter-spacing: -0.061em;
   }
   .description {
-    font-size: 13px;
-    margin-top: 20px;
-  }
-  .mobileBreak {
-    display: block;
+    max-width: 325px;
+    min-height: 72px;
+    font-size: 15px;
+    margin-top: 18px;
   }
   .productStage {
-    min-height: 375px;
-    margin-top: 24px;
+    height: 386px;
+    margin-top: 10px;
   }
-  .productEntrance {
-    width: 165px;
+  .productImageLayer {
+    width: 304px;
   }
-  .goldDisc {
-    width: 310px;
-    height: 290px;
+  .milkCrop {
+    width: 184px;
+    left: -9px;
+  }
+  .packImage {
+    width: 273px;
+    height: 340px;
+  }
+  .ghee .packImage {
+    width: 282px;
+    height: 322px;
+  }
+  .backdrop {
+    width: min(314px, 85vw);
+    height: 302px;
   }
   .orbit {
-    width: 340px;
-    height: 310px;
+    width: min(347px, 94vw);
+    height: 326px;
   }
   .sideNote,
   .productNote {
@@ -311,46 +497,102 @@
   }
   .sparkleLeft {
     left: 0;
-    top: 35px;
-    width: 22px;
+    top: auto;
+    bottom: 35px;
+    width: 18px;
   }
   .sparkleRight {
     right: 0;
-    bottom: 25px;
-    width: 30px;
+    bottom: auto;
+    top: 25px;
+    width: 25px;
   }
   .actions {
-    margin-top: 24px;
     gap: 10px;
+    margin-top: 20px;
+  }
+  .cowWatermark {
+    width: min(435px, 105vw);
+    height: 405px;
+  }
+  .seal {
+    top: 32px;
+    left: 2%;
+    width: 78px;
+    height: 78px;
+  }
+  .heroBadge {
+    right: -10px;
+    bottom: 12px;
+  }
+  .naturalBadge {
+    width: 100px;
+  }
+  .milkBadge {
+    right: -14px;
+    width: 110px;
+  }
+  .productTags {
+    margin-top: 20px;
+    gap: 8px 14px;
+    font-size: 12px;
+  }
+  .mobilePackNote {
+    display: block;
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 12px;
   }
   .primaryButton,
   .secondaryButton {
-    gap: 12px;
-    padding: 14px 16px;
+    padding: 14px 10px;
+    gap: 7px;
+    font-size: 14px;
+  }
+  .actions svg {
+    flex: 0 0 16px;
+    width: 16px;
+  }
+  .navigation {
+    margin-inline: 24px;
+    padding: 10px 0;
+    min-height: 64px;
+  }
+  .progressIndicator {
+    right: 20px;
+    top: 15px;
+  }
+  .controls {
+    gap: 6px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .selectors {
+    gap: 0;
+  }
+  .selectors button {
     font-size: 12px;
+    padding: 8px;
+    gap: 5px;
   }
-  .productDetails p {
-    max-width: 260px;
-    margin: 10px auto 28px;
-    font-size: 11px;
+  .arrowButton {
+    width: 40px;
+    height: 44px;
   }
-  .bottomLine > span:first-child {
-    display: none;
-  }
-  .bottomLine > span:nth-child(2) {
-    font-size: 11px;
+}
+@media (max-width: 375px) {
+  .heading {
+    margin-inline: -7px;
+    font-size: 36px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .productFloat {
-    animation: none;
-  }
   .primaryButton,
   .secondaryButton {
     transition: none;
   }
-  .primaryButton[href]:hover,
-  .secondaryButton:hover {
+  .primaryButton:hover,
+  .secondaryButton[href]:hover {
     transform: none;
   }
 }

@@ -39,20 +39,33 @@
   text-decoration-color: var(--gold);
 }
 .brand {
-  font-family: var(--heading-font);
-  font-weight: 500;
-  font-size: 32px;
-  letter-spacing: 3px;
-  text-align: center;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--gold) 42%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--charcoal) 94%, var(--off-white));
+  isolation: isolate;
   text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
 }
-.brand span {
-  display: block;
-  font-family: var(--body-font);
-  font-size: 8px;
-  letter-spacing: 2px;
-  margin-top: 8px;
+.brand:hover,
+.brand:focus-visible {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--charcoal) 86%, var(--off-white));
+}
+.brand:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+.brand:active {
+  background: var(--charcoal);
 }
 .actions {
   display: flex;
@@ -76,6 +89,19 @@
 }
 .enquiry:disabled {
   cursor: not-allowed;
+}
+.enquiry[href] {
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+.enquiry[href]:hover,
+.enquiry[href]:focus-visible {
+  background: color-mix(in srgb, var(--gold) 82%, var(--off-white));
+}
+.enquiry[href]:active {
+  box-shadow: inset 0 2px 4px #3b3a3740;
 }
 .toggle {
   display: none;
@@ -152,11 +178,7 @@
   }
   .brand {
     justify-self: start;
-    font-size: 28px;
-  }
-  .brand span {
-    font-size: 7px;
-    letter-spacing: 1.5px;
+    padding-inline: 7px;
   }
   .toggle {
     display: flex;
@@ -176,5 +198,23 @@
   }
   .actions {
     gap: 8px;
+  }
+}
+@media (max-width: 350px) {
+  .bar {
+    padding-inline: 10px;
+    gap: 8px;
+  }
+  .brand {
+    padding-inline: 5px;
+  }
+  .enquiry {
+    padding-inline: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .enquiry[href] {
+    transition: none;
   }
 }

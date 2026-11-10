@@ -57,8 +57,13 @@ export function Header() {
     <header ref={header} className={styles.header}>
       <nav className={styles.bar} aria-label="Main navigation">
         <div className={styles.links}>{sectionLinks}</div>
-        <a href={homeUrl} className={styles.brand} aria-label="Nore Farms home">
-          <BrandLogo />
+        <a
+          href={homeUrl}
+          className={styles.brand}
+          aria-label="Nore Farms home"
+          title="Back to home"
+        >
+          <BrandLogo inverse />
         </a>
         <div className={styles.actions}>
           <EnquiryLink className={styles.enquiry} />
