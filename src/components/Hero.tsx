@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { Arrow } from './Arrow';
 import { EnquiryLink } from './EnquiryLink';
 import { productUrl } from '../lib/navigation';
 import { products } from '../data/products';
@@ -212,7 +211,7 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
 
         <div className={styles.actions}>
           <a className={styles.primaryButton} href={productUrl(product.slug)}>
-            Explore {product.name.toLowerCase()} <Arrow />
+            Explore {product.name.toLowerCase()}
           </a>
           <EnquiryLink product={product.name} className={styles.secondaryButton} />
         </div>
@@ -391,33 +390,18 @@ export function Hero() {
           }
         }}
       >
-        <div className={styles.controls}>
-          <button
-            className={styles.arrowButton}
-            onClick={() => goTo(active - 1)}
-            aria-label="Previous product"
-          >
-            <Arrow direction="left" />
-          </button>
-          <div className={styles.selectors} role="group" aria-label="Choose a product">
-            {heroSlides.map((slide, index) => (
-              <button
-                key={slide.productId}
-                aria-pressed={active === index}
-                onClick={() => goTo(index)}
-              >
-                <span className={styles.dot} aria-hidden="true" />
-                {products.find((product) => product.id === slide.productId)!.name}
-              </button>
-            ))}
-          </div>
-          <button
-            className={styles.arrowButton}
-            onClick={() => goTo(active + 1)}
-            aria-label="Next product"
-          >
-            <Arrow direction="right" />
-          </button>
+        <div className={styles.selectors} role="group" aria-label="Choose a product">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide.productId}
+              type="button"
+              aria-pressed={active === index}
+              onClick={() => goTo(index)}
+            >
+              <span className={styles.dot} aria-hidden="true" />
+              {products.find((product) => product.id === slide.productId)!.name}
+            </button>
+          ))}
         </div>
       </div>
       <p className="sr-only" aria-live="polite" aria-atomic="true">

@@ -1,9 +1,7 @@
 import { products } from '../../data/products';
-import { EnquiryLink } from '../EnquiryLink';
 import { Reveal } from './Reveal';
 import styles from './Sections.module.css';
 import { productUrl } from '../../lib/navigation';
-import { Arrow } from '../Arrow';
 
 export function ProductsSection() {
   return (
@@ -16,7 +14,7 @@ export function ProductsSection() {
       <Reveal>
         <div className={styles.sectionIntro}>
           <div>
-            <p className={styles.eyebrow}>01 / THE EVERYDAY COLLECTION</p>
+            <p className={styles.eyebrow}>THE EVERYDAY COLLECTION</p>
             <h2 id="products-heading" className={styles.sectionHeading}>
               A small range.
               <br />A place in every kitchen.
@@ -30,7 +28,7 @@ export function ProductsSection() {
       </Reveal>
 
       <div className={styles.productGrid}>
-        {products.map((product, index) => (
+        {products.map((product) => (
           <Reveal key={product.id} className={styles.cardReveal}>
             <article className={styles.productCard}>
               <a
@@ -38,9 +36,6 @@ export function ProductsSection() {
                 href={productUrl(product.slug)}
                 aria-label={`View ${product.name} product details`}
               >
-                <span className={styles.productIndex} aria-hidden="true">
-                  0{index + 1}
-                </span>
                 {product.isMilk ? (
                   <div
                     className={styles.milkCrop}
@@ -76,13 +71,8 @@ export function ProductsSection() {
                 </h3>
                 <p>{product.description}</p>
                 <a href={productUrl(product.slug)} className={styles.goldButton}>
-                  View product <Arrow />
+                  View product
                 </a>
-                <EnquiryLink
-                  product={product.name}
-                  label="Enquire on WhatsApp"
-                  className={styles.cardEnquiry}
-                />
               </div>
             </article>
           </Reveal>

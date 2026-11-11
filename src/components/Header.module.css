@@ -76,7 +76,6 @@
 .enquiry {
   display: flex;
   align-items: center;
-  gap: 20px;
   border: 0;
   border-radius: 10px;
   background: var(--gold);
@@ -185,16 +184,12 @@
   }
   .enquiry {
     padding: 12px 14px;
-    gap: 8px;
     font-size: 12px;
   }
 }
 @media (max-width: 380px) {
   .bar {
     padding: 0 14px;
-  }
-  .enquiry svg {
-    display: none;
   }
   .actions {
     gap: 8px;

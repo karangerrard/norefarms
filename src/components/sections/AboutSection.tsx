@@ -1,4 +1,3 @@
-import { Arrow } from '../Arrow';
 import { Reveal } from './Reveal';
 import styles from './Sections.module.css';
 import { BrandLogo } from '../BrandLogo';
@@ -33,7 +32,7 @@ export function AboutSection() {
             everyday kitchens. We believe these familiar rituals deserve thought and care.
           </p>
           <a href="#contact" className={styles.textLink}>
-            Get to know us <Arrow />
+            Get to know us
           </a>
         </div>
         <figure className={styles.aboutFigure}>

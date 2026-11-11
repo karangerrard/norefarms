@@ -4,9 +4,27 @@ import { products } from '../../data/products';
 import { productDetails } from '../../data/productDetails';
 import { homeUrl, productUrl, sectionUrl } from '../../lib/navigation';
 import { BrandLogo } from '../BrandLogo';
-import { Arrow } from '../Arrow';
 import { EnquiryLink } from '../EnquiryLink';
 import styles from './ProductPage.module.css';
+
+function RangeArrow() {
+  return (
+    <svg
+      className={styles.rangeArrow}
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14m-7-7 7 7-7 7" />
+    </svg>
+  );
+}
 
 export function ProductPage({ product }: { product: Product }) {
   const details = productDetails[product.id];
@@ -103,7 +121,8 @@ export function ProductPage({ product }: { product: Product }) {
             </p>
           )}
           <a className={styles.backLink} href={sectionUrl('products')}>
-            Explore the range <Arrow direction="right" />
+            Explore the range
+            <RangeArrow />
           </a>
         </div>
       </section>
@@ -166,7 +185,7 @@ export function ProductPage({ product }: { product: Product }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View milk label (PDF) <Arrow />
+              View milk label (PDF)
             </a>
           )}
         </div>
@@ -249,7 +268,7 @@ export function ProductPage({ product }: { product: Product }) {
             for your location.
           </p>
           <a href={sectionUrl('contact')} className={styles.labelLink}>
-            Contact Nore Farms <Arrow />
+            Contact Nore Farms
           </a>
         </details>
       </section>
@@ -262,8 +281,8 @@ export function ProductPage({ product }: { product: Product }) {
             .filter((item) => item.id !== product.id)
             .map((item) => (
               <a key={item.id} href={productUrl(item.slug)}>
-                <span>{item.name}</span>
-                <Arrow direction="right" />
+                {item.name}
+                <RangeArrow />
               </a>
             ))}
         </div>

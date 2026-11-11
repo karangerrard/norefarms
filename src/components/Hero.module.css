@@ -292,7 +292,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
   min-height: 52px;
   padding: 15px 24px;
   border: 1px solid transparent;
@@ -356,24 +355,6 @@
   height: 100%;
   background: var(--gold);
   transform-origin: left center;
-}
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.arrowButton {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  background: none;
-  border: 1px solid #3b3a3740;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.arrowButton:hover {
-  background: color-mix(in srgb, var(--gold) 15%, var(--off-white));
 }
 .selectors {
   display: flex;
@@ -546,12 +527,7 @@
   .primaryButton,
   .secondaryButton {
     padding: 14px 10px;
-    gap: 7px;
     font-size: 14px;
-  }
-  .actions svg {
-    flex: 0 0 16px;
-    width: 16px;
   }
   .navigation {
     margin-inline: 24px;
@@ -562,11 +538,6 @@
     right: 20px;
     top: 15px;
   }
-  .controls {
-    gap: 6px;
-    width: 100%;
-    justify-content: space-between;
-  }
   .selectors {
     gap: 0;
   }
@@ -574,10 +545,6 @@
     font-size: 12px;
     padding: 8px;
     gap: 5px;
-  }
-  .arrowButton {
-    width: 40px;
-    height: 44px;
   }
 }
 @media (max-width: 375px) {

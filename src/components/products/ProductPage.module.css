@@ -40,6 +40,8 @@
   position: absolute;
   left: 24px;
   top: 24px;
+  /* Let the gallery color show through the white parts of the logo artwork. */
+  mix-blend-mode: multiply;
 }
 .halo {
   position: absolute;
@@ -123,8 +125,7 @@
 .enquiry {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
   min-height: 54px;
   width: 100%;
   border: 0;
@@ -156,10 +157,15 @@
 .labelLink {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
   min-height: 44px;
   font-size: 12px;
   text-underline-offset: 6px;
+}
+.backLink {
+  gap: 12px;
+}
+.rangeArrow {
+  flex: none;
 }
 .sectionNav {
   display: flex;
@@ -288,12 +294,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 24px 0;
   border-top: 1px solid #d5b05890;
   text-decoration: none;
   font-size: 20px;
 }
-.related a:hover span {
+.related a:hover {
   text-decoration: underline;
   text-underline-offset: 6px;
 }
