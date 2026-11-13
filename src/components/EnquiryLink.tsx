@@ -1,4 +1,5 @@
 import { whatsappUrl } from '../lib/whatsapp';
+import { site } from '../config/site';
 
 interface EnquiryLinkProps {
   product?: string;
@@ -27,7 +28,15 @@ export function EnquiryLink({
   }
 
   return (
-    <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+    <a
+      className={className}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={
+        site.whatsappIsSample ? 'Preview link using a sample WhatsApp number' : undefined
+      }
+    >
       {label}
     </a>
   );

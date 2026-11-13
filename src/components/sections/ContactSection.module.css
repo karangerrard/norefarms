@@ -1,0 +1,391 @@
+.contact {
+  position: relative;
+  isolation: isolate;
+  margin: 0 24px;
+  padding: 72px 64px 40px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--charcoal);
+  color: var(--charcoal);
+  scroll-margin-top: 8px;
+}
+
+.contact:focus {
+  outline: none;
+}
+
+.background,
+.background::after,
+.background img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.background {
+  z-index: -2;
+  background: var(--gold);
+}
+
+.background img {
+  object-fit: cover;
+  object-position: center 65%;
+  filter: grayscale(1);
+}
+
+.background::after {
+  content: '';
+  background: linear-gradient(
+    115deg,
+    color-mix(in srgb, var(--charcoal) 35%, transparent),
+    color-mix(in srgb, var(--gold) 44%, transparent) 62%,
+    color-mix(in srgb, var(--charcoal) 25%, transparent)
+  );
+}
+
+.contactGrid {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 48px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 0;
+}
+
+.contactGrid::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 38px;
+  content: '';
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--charcoal) 76%, transparent);
+  box-shadow: 0 24px 70px color-mix(in srgb, var(--charcoal) 20%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.detailsPanel {
+  padding: 32px;
+  border: 1px solid color-mix(in srgb, var(--off-white) 22%, transparent);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--charcoal) 88%, transparent);
+  color: var(--off-white);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--charcoal) 22%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+}
+
+.detailsPanel h2,
+.messagePanel h3 {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.detailsPanel h2 {
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.detailsIntro {
+  max-width: 31ch;
+  margin: 14px 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.details {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.detail > svg {
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+  color: var(--gold);
+}
+
+.details dt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.details dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.details a {
+  display: inline-block;
+  padding-block: 3px;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.details a:hover {
+  text-decoration: underline;
+}
+
+.sample {
+  padding: 1px 6px;
+  border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+  border-radius: 4px;
+  background: var(--gold);
+  color: var(--charcoal);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.serviceArea {
+  margin-left: 38px;
+}
+
+.whatsapp,
+.submit {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--gold);
+  color: var(--charcoal);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.whatsapp {
+  width: 100%;
+}
+
+.whatsapp:hover,
+.submit:hover {
+  background: color-mix(in srgb, var(--gold) 82%, var(--off-white));
+}
+
+.whatsapp:focus-visible {
+  outline: 2px solid var(--off-white);
+  outline-offset: 4px;
+  box-shadow: none;
+}
+
+.sampleNumber {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.messagePanel {
+  min-width: 0;
+  padding: 16px 40px 16px 0;
+  color: var(--off-white);
+}
+
+.messagePanel h3 {
+  font-size: clamp(32px, 3vw, 42px);
+  line-height: 1.15;
+}
+
+.messageIntro {
+  margin: 14px 0 24px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--charcoal) 26%, transparent);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--off-white) 78%, transparent);
+  color: var(--charcoal);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in srgb, var(--charcoal) 90%, var(--off-white));
+}
+
+.field textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible,
+.submit:focus-visible {
+  outline: 2px solid var(--charcoal);
+  outline-offset: 3px;
+  border-color: var(--charcoal);
+  box-shadow: none;
+}
+
+.field input:user-invalid,
+.field textarea:user-invalid {
+  border: 2px solid var(--charcoal);
+}
+
+.submit:focus-visible {
+  outline-color: var(--off-white);
+}
+
+.submit {
+  justify-self: start;
+  min-width: 180px;
+}
+
+.formNote,
+.draftNotice {
+  margin: -6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.draftNotice:empty {
+  display: none;
+}
+
+.photoNote {
+  width: fit-content;
+  max-width: 100%;
+  margin: 26px auto 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--charcoal) 90%, transparent);
+  color: var(--off-white);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+@media (max-width: 1100px) {
+  .contact {
+    padding: 64px 36px 32px;
+  }
+
+  .contactGrid {
+    gap: 28px;
+  }
+
+  .detailsPanel {
+    padding: 28px;
+  }
+
+  .messagePanel {
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact {
+    margin-inline: 16px;
+    padding: 32px 16px 24px;
+    border-radius: 22px;
+  }
+
+  .background img {
+    object-position: 62% center;
+  }
+
+  .contactGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  .contactGrid::before {
+    inset: 0;
+    border-radius: 18px;
+  }
+
+  .detailsPanel {
+    padding: 26px 24px;
+    border-radius: 18px;
+  }
+
+  .messagePanel {
+    padding: 30px 24px;
+  }
+
+  .details a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .details {
+    gap: 12px;
+  }
+
+  .messagePanel h3 {
+    font-size: 32px;
+  }
+
+  .submit {
+    width: 100%;
+  }
+
+  .photoNote {
+    margin-top: 18px;
+    font-size: 11px;
+    text-align: center;
+  }
+}
