@@ -8,8 +8,18 @@ import styles from './Hero.module.css';
 
 // A full seven-second interval starts when the next slide has settled.
 const READING_TIME_MS = 7000;
-const COPY_TRANSITION_SECONDS = 0.55;
-const ease = [0.22, 1, 0.36, 1] as const;
+const SLIDE_DURATION_SECONDS = 0.95;
+const slideEase = [0.4, 0, 0.2, 1] as const;
+const heroFrames = [
+  { index: heroSlides.length - 1, key: 'loop-start' },
+  ...heroSlides.map((slide, index) => ({ index, key: slide.productId })),
+  { index: 0, key: 'loop-end' },
+];
+const productDepth = {
+  rest: { scale: 1, y: 0, z: 0 },
+  hover: { scale: 1.14, y: -8, z: 20 },
+  press: { scale: 1.12, y: -4, z: 14 },
+};
 
 function Sparkle({ className }: { className: string }) {
   return (
@@ -87,12 +97,12 @@ function CollectionSeal({ id }: { id: string }) {
 
 interface HeroPanelProps {
   index: number;
-  direction: number;
+  instanceId: string;
+  isActive: boolean;
   noMotion: boolean;
-  onSettled: () => void;
 }
 
-function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
+function HeroPanel({ index, instanceId, isActive, noMotion }: HeroPanelProps) {
   const slide = heroSlides[index];
   const product = products.find((item) => item.id === slide.productId)!;
 
@@ -102,17 +112,12 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
       role="group"
       aria-roledescription="slide"
       aria-label={`${index + 1} of ${heroSlides.length}: ${product.name}`}
-      aria-hidden="false"
+      aria-hidden={!isActive}
+      inert={!isActive}
       data-hero-panel
     >
       <div className={styles.slideInner}>
-        <motion.div
-          className={styles.introduction}
-          initial={noMotion ? false : { x: direction * 18, opacity: 0.45 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: noMotion ? 0 : COPY_TRANSITION_SECONDS, ease }}
-          onAnimationComplete={onSettled}
-        >
+        <div className={styles.introduction}>
           <p className={styles.eyebrow}>
             NORE FARMS <span aria-hidden="true">/</span> {slide.eyebrow}
           </p>
@@ -122,7 +127,7 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
             <span>{slide.headline[1]}</span>
           </h2>
           <p className={styles.description}>{slide.description}</p>
-        </motion.div>
+        </div>
 
         <div className={styles.productStage}>
           <img
@@ -133,13 +138,7 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
             width="275"
             height="211"
           />
-          <motion.div
-            className={styles.backdrop}
-            aria-hidden="true"
-            initial={noMotion ? false : { rotate: -18, scale: 0.96 }}
-            animate={{ rotate: product.id === 'paneer' ? 10 : -10, scale: 1 }}
-            transition={{ duration: noMotion ? 0 : 1.15, ease }}
-          />
+          <div className={styles.backdrop} aria-hidden="true" />
           <div className={styles.orbit} aria-hidden="true" />
           {product.isMilk ? (
             <img
@@ -150,9 +149,9 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
               height="200"
             />
           ) : (
-            <NaturalBadge id={product.id} />
+            <NaturalBadge id={instanceId} />
           )}
-          <CollectionSeal id={product.id} />
+          <CollectionSeal id={instanceId} />
           <Sparkle className={styles.sparkleLeft} />
           <Sparkle className={styles.sparkleRight} />
 
@@ -170,32 +169,50 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
 
           {/* The product never shares a transform or opacity animation with the décor. */}
           <div className={styles.productImageLayer}>
-            {product.isMilk ? (
-              <div
-                className={styles.milkCrop}
-                style={{
-                  maskImage: `url("${import.meta.env.BASE_URL}brand/milk-silhouette.svg")`,
-                }}
-              >
+            <motion.div
+              className={styles.productInteraction}
+              initial={false}
+              animate="rest"
+              variants={productDepth}
+              whileHover={noMotion ? undefined : 'hover'}
+              whileTap={noMotion ? undefined : 'press'}
+              tabIndex={-1}
+              style={{ transformPerspective: 900 }}
+              transition={
+                noMotion
+                  ? { duration: 0 }
+                  : { type: 'spring', stiffness: 260, damping: 25, mass: 0.7 }
+              }
+            >
+              {product.isMilk ? (
+                <div
+                  className={styles.milkCrop}
+                  style={{
+                    maskImage: `url("${import.meta.env.BASE_URL}brand/milk-silhouette.svg")`,
+                  }}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/${product.image}`}
+                    alt={product.imageAlt}
+                    width="1168"
+                    height="1347"
+                    fetchPriority="high"
+                    decoding="async"
+                    draggable={false}
+                  />
+                </div>
+              ) : (
                 <img
+                  className={styles.packImage}
                   src={`${import.meta.env.BASE_URL}images/${product.image}`}
                   alt={product.imageAlt}
-                  width="1168"
-                  height="1347"
-                  fetchPriority="high"
+                  width="1024"
+                  height="1536"
                   decoding="async"
+                  draggable={false}
                 />
-              </div>
-            ) : (
-              <img
-                className={styles.packImage}
-                src={`${import.meta.env.BASE_URL}images/${product.image}`}
-                alt={product.imageAlt}
-                width="1024"
-                height="1536"
-                decoding="async"
-              />
-            )}
+              )}
+            </motion.div>
           </div>
 
           <div className={styles.productNote}>
@@ -203,15 +220,12 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
             <span className={styles.highlightValue}>{slide.highlight.value}</span>
             <span className={styles.highlightLabel}>{slide.highlight.label}</span>
             <span className={styles.productName}>{product.name}.</span>
-            {product.illustrative && (
-              <span className={styles.packagingNote}>Illustrative packaging</span>
-            )}
           </div>
         </div>
 
         <div className={styles.actions}>
           <a className={styles.primaryButton} href={productUrl(product.slug)}>
-            Explore {product.name.toLowerCase()}
+            View Product
           </a>
           <EnquiryLink product={product.name} className={styles.secondaryButton} />
         </div>
@@ -220,9 +234,6 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
             <li key={tag}>{tag}</li>
           ))}
         </ul>
-        {product.illustrative && (
-          <p className={styles.mobilePackNote}>Illustrative packaging</p>
-        )}
       </div>
     </div>
   );
@@ -230,7 +241,8 @@ function HeroPanel({ index, direction, noMotion, onSettled }: HeroPanelProps) {
 
 export function Hero() {
   const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [position, setPosition] = useState(1);
+  const [instantJump, setInstantJump] = useState(false);
   const [slideKeyboardFocus, setSlideKeyboardFocus] = useState(false);
   const [transitioning, setTransitioning] = useState(false);
   const [documentVisible, setDocumentVisible] = useState(
@@ -258,7 +270,11 @@ export function Hero() {
     // Preload local pack shots so the next product is ready before its first reveal.
     const images = products.map((product) => {
       const image = new Image();
+      image.decoding = 'async';
       image.src = `${import.meta.env.BASE_URL}images/${product.image}`;
+      void image.decode().catch(() => {
+        // Keep the original image element's normal loading fallback on decode failure.
+      });
       return image;
     });
     return () => {
@@ -272,8 +288,9 @@ export function Hero() {
     if (!isPlaying) return;
     const timer = window.setTimeout(() => {
       transitionLock.current = true;
-      setDirection(1);
+      setInstantJump(false);
       setTransitioning(true);
+      setPosition((value) => value + 1);
       setActive((index) => (index + 1) % heroSlides.length);
     }, READING_TIME_MS);
     return () => window.clearTimeout(timer);
@@ -286,11 +303,18 @@ export function Hero() {
     const panel = document.activeElement?.closest('[data-hero-panel]');
     if (panel) navigation.current?.querySelector<HTMLButtonElement>('button')?.focus();
     const delta = next - active;
-    setDirection(
-      Math.abs(delta) === heroSlides.length - 1 ? -Math.sign(delta) : Math.sign(delta),
-    );
+    const direction =
+      Math.abs(delta) === heroSlides.length - 1 ? -Math.sign(delta) : Math.sign(delta);
+    const target =
+      active === heroSlides.length - 1 && next === 0 && direction > 0
+        ? heroSlides.length + 1
+        : active === 0 && next === heroSlides.length - 1 && direction < 0
+          ? 0
+          : next + 1;
+    setInstantJump(noMotion);
     transitionLock.current = !noMotion;
     setTransitioning(!noMotion);
+    setPosition(noMotion ? next + 1 : target);
     setActive(next);
     const product = products.find((item) => item.id === heroSlides[next].productId)!;
     setAnnouncement(
@@ -299,6 +323,13 @@ export function Hero() {
   }
 
   function onSettled() {
+    if (!transitionLock.current) return;
+    // Matching end frames keep the loop moving in the same direction. The reset
+    // is instantaneous between identical views, with unique SVG IDs per frame.
+    if (position === 0 || position === heroFrames.length - 1) {
+      setInstantJump(true);
+      setPosition(active + 1);
+    }
     transitionLock.current = false;
     setTransitioning(false);
   }
@@ -341,30 +372,27 @@ export function Hero() {
       }}
     >
       <h1 className="sr-only">Nore Farms. Dairy for the everyday.</h1>
-      <div className={styles.progressIndicator} aria-hidden="true">
-        <span>
-          {String(active + 1).padStart(2, '0')} /{' '}
-          {String(heroSlides.length).padStart(2, '0')}
-        </span>
-        <div className={styles.readingProgress}>
-          {isPlaying && (
-            <motion.span
-              key={active}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: READING_TIME_MS / 1000, ease: 'linear' }}
-            />
-          )}
-        </div>
-      </div>
       <div className={styles.viewport}>
-        <HeroPanel
-          key={active}
-          index={active}
-          direction={direction}
-          noMotion={noMotion}
-          onSettled={onSettled}
-        />
+        <motion.div
+          className={styles.slideTrack}
+          initial={false}
+          animate={{ x: `${position * -100}%` }}
+          transition={{
+            duration: noMotion || instantJump ? 0 : SLIDE_DURATION_SECONDS,
+            ease: slideEase,
+          }}
+          onAnimationComplete={onSettled}
+        >
+          {heroFrames.map((frame, framePosition) => (
+            <HeroPanel
+              key={frame.key}
+              index={frame.index}
+              instanceId={`hero-${frame.key}`}
+              isActive={framePosition === position}
+              noMotion={noMotion}
+            />
+          ))}
+        </motion.div>
       </div>
 
       <div
@@ -396,10 +424,20 @@ export function Hero() {
               key={slide.productId}
               type="button"
               aria-pressed={active === index}
+              aria-label={`Show ${products.find((product) => product.id === slide.productId)!.name}, slide ${index + 1} of ${heroSlides.length}`}
               onClick={() => goTo(index)}
             >
-              <span className={styles.dot} aria-hidden="true" />
-              {products.find((product) => product.id === slide.productId)!.name}
+              <span className={styles.readingProgress} aria-hidden="true">
+                {active === index && isPlaying && (
+                  <motion.span
+                    key={active}
+                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                    animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                    transition={{ duration: READING_TIME_MS / 1000, ease: 'linear' }}
+                  />
+                )}
+                {active === index && noMotion && <span />}
+              </span>
             </button>
           ))}
         </div>
