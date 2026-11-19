@@ -1,4 +1,5 @@
 import { products } from '../../data/products';
+import { AnnouncementStrip } from '../AnnouncementStrip';
 import { Reveal } from './Reveal';
 import styles from './Sections.module.css';
 import { productUrl } from '../../lib/navigation';
@@ -26,6 +27,8 @@ export function ProductsSection() {
           </p>
         </div>
       </Reveal>
+
+      <AnnouncementStrip />
 
       <div className={styles.productGrid}>
         {products.map((product) => (
