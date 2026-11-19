@@ -1,9 +1,9 @@
 import { site } from '../config/site';
 import styles from './SocialLinks.module.css';
 
-export function SocialLinks() {
+export function SocialLinks({ variant = 'icons' }: { variant?: 'icons' | 'text' }) {
   return (
-    <div className={styles.socials}>
+    <div className={`${styles.socials} ${variant === 'text' ? styles.text : ''}`}>
       <ul aria-label="Social media">
         {site.socialLinks.map((link) => (
           <li key={link.url}>
@@ -14,7 +14,20 @@ export function SocialLinks() {
               aria-label={`${link.label}${link.isSample ? ' — sample link' : ''}`}
               title={link.isSample ? `${link.label} — sample link` : link.label}
             >
-              {link.label === 'Facebook' ? (
+              {variant === 'text' ? (
+                <>
+                  <span>{link.label}</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 18 18 6M6 6h12v12" />
+                  </svg>
+                </>
+              ) : link.label === 'Facebook' ? (
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fill="currentColor"

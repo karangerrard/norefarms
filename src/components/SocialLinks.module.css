@@ -50,3 +50,40 @@
   font-size: 12px;
   line-height: 1.5;
 }
+
+.text {
+  margin-top: 0;
+}
+
+.text ul {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.text a {
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.text a:hover {
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-color: var(--charcoal);
+  text-underline-offset: 5px;
+}
+
+.text a:focus-visible {
+  outline-color: var(--charcoal);
+}
+
+.text svg {
+  width: 16px;
+  height: 16px;
+}
