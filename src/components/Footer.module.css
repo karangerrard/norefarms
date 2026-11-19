@@ -51,8 +51,7 @@
   padding-inline-end: clamp(12px, 1.7vw, 32px);
 }
 
-.linkList,
-.socialLinks {
+.linkList {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -103,19 +102,6 @@
   color: var(--charcoal);
   font-size: clamp(0.9375rem, 1vw, 1.125rem);
   font-weight: 700;
-}
-
-.socialLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 16px;
-  margin-top: 12px;
-}
-
-.socialLinks a {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
 }
 
 .contact address {

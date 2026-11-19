@@ -3,12 +3,13 @@ import { products } from '../data/products';
 import { homeUrl, productUrl, sectionUrl } from '../lib/navigation';
 import { whatsappUrl } from '../lib/whatsapp';
 import { BrandLogo } from './BrandLogo';
+import { SocialLinks } from './SocialLinks';
 import styles from './Footer.module.css';
 
 export function Footer() {
   const whatsapp = whatsappUrl();
   const phone = site.phone.replace(/\D/g, '');
-  const displayPhone = `+${phone.replace(/^(91)(\d{5})(\d{5})$/, '$1 $2 $3')}`;
+  const displayPhone = `+${phone.replace(/^(91)(\d{5})(\d{5})$/, '$1 $2$3')}`;
 
   return (
     <footer className={styles.footer}>
@@ -28,6 +29,9 @@ export function Footer() {
               </li>
               <li>
                 <a href={sectionUrl('products')}>Products</a>
+              </li>
+              <li>
+                <a href={sectionUrl('subscriptions')}>Subscriptions</a>
               </li>
               <li>
                 <a href={sectionUrl('about')}>About us</a>
@@ -58,20 +62,15 @@ export function Footer() {
               href={whatsapp ?? sectionUrl('contact')}
               target={whatsapp ? '_blank' : undefined}
               rel={whatsapp ? 'noopener noreferrer' : undefined}
+              title={
+                site.whatsappIsSample
+                  ? 'Preview link using a sample WhatsApp number'
+                  : undefined
+              }
             >
               {whatsapp ? 'Enquire on WhatsApp' : 'Ask about availability'}
             </a>
-            {site.socialLinks.length > 0 && (
-              <ul className={styles.socialLinks} aria-label="Social links">
-                {site.socialLinks.map((link) => (
-                  <li key={link.url}>
-                    <a href={link.url} target="_blank" rel="noopener noreferrer">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <SocialLinks />
           </div>
 
           <div className={styles.contact}>
@@ -80,10 +79,8 @@ export function Footer() {
               {phone && <a href={`tel:+${phone}`}>{displayPhone}</a>}
               {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
               <span className={styles.streetAddress}>
-                {!site.address && (
-                  <span className={styles.addressLabel}>Sample address</span>
-                )}
-                {site.address || '12 Farm Lane, Pune, Maharashtra'}
+                {!site.address && <span className={styles.addressLabel}>Address</span>}
+                {site.address || '12 Farm Lane, Jind, Haryana'}
               </span>
             </address>
           </div>
