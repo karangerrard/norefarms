@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { Footer } from './components/Footer';
 
 import { ProductsSection } from './components/sections/ProductsSection';
+import { OffersSubscriptionsSection } from './components/sections/OffersSubscriptionsSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { ContactSection } from './components/sections/ContactSection';
 
@@ -12,9 +13,7 @@ import { ProductPage } from './components/products/ProductPage';
 import { products } from './data/products';
 
 export default function App() {
-  const slug = window.location.pathname.match(
-    /\/products\/([^/]+)\/?$/
-  )?.[1];
+  const slug = window.location.pathname.match(/\/products\/([^/]+)\/?$/)?.[1];
 
   const product = products.find((item) => item.slug === slug);
 
@@ -33,6 +32,7 @@ export default function App() {
           <>
             <Hero />
             <ProductsSection />
+            <OffersSubscriptionsSection />
             <AboutSection />
             <ContactSection />
           </>
